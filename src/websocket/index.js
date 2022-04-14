@@ -63,7 +63,7 @@ export default class VueWebSocket {
         this.heartbeatTimeout = HEART_BEAT_INTERVAL;
         this.reconnectInterval = RECONNECT_INTERVAL;
         this.binaryType = BINTRAY_TYPE;
-        this.url = WS_PROTOCOL + '://' + WS_IP ;
+        this.url = WS_PROTOCOL + '://' + WS_IP + ':' + WS_PORT + '/' + WS_PROTOCOL;
         this.initHandlerList();
         this.connect(true);
     }
