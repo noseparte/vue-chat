@@ -43,7 +43,7 @@ export default class VueWebSocket {
     userDisconnect = false;
     isconnected = false;
     resolvePromiseMap = new Map();
-    
+
     // constructor(ws_protocol,ip,port,heartbeatTimeout,reconnectInterval,binaryType,vuexStore){
     //     this.ws_protocol = ws_protocol;
     //     this.ip= ip;
@@ -131,7 +131,9 @@ export default class VueWebSocket {
     }
 
     ping(){
-        this.send('心跳内容')
+        // this.send('0x89')
+      const data = JSON.stringify({ ping: new Date().getTime() })
+      this.send(data);
     }
 
     send(data){
@@ -141,7 +143,7 @@ export default class VueWebSocket {
         } else {
             console.log("curent websocket is close");
         }
-        
+
     }
 
     /**
@@ -256,7 +258,7 @@ export default class VueWebSocket {
     handleFriendRequest(value){
         this.sendPublishMessage(FHR,value);
     }
-    
+
     /**
      * 获取用户详细信息
      */
@@ -270,10 +272,10 @@ export default class VueWebSocket {
     }
 
     /**
-     * 
+     *
      * @param {用户信息} info: {
      * type:  0
-     * value: 
+     * value:
      * }
      */
     modifyMyInfo(info){
@@ -281,9 +283,9 @@ export default class VueWebSocket {
     }
 
     /**
-     * 
-     * @param {群组id} groupId 
-     * @param {是否需要刷新} refresh 
+     *
+     * @param {群组id} groupId
+     * @param {是否需要刷新} refresh
      */
     getGroupInfo(groupId,refresh){
         var groupIds = [];
@@ -391,9 +393,9 @@ export default class VueWebSocket {
     }
 
     /**
-     * 
-     * @param {子信令} subsignal 
-     * @param {消息体内容} content 
+     *
+     * @param {子信令} subsignal
+     * @param {消息体内容} content
      */
     sendPublishMessage(subsignal,content,protoMessageId = 0){
         var websocketprotomessage = new WebSocketProtoMessage();
@@ -407,7 +409,7 @@ export default class VueWebSocket {
         websocketprotomessage.setMessageId(++messageId);
         LocalStore.saveMessageId(messageId);
         this.send(websocketprotomessage.toJson());
-        
+
         var vueWebSocket = this;
         var pubAckPromise = new Promise((resolve) => {
              var timeoutId = setTimeout(() => {
@@ -421,7 +423,7 @@ export default class VueWebSocket {
                  } else {
                     resolve(new FutureResult(ERROR_CODE,""));
                  }
-                 
+
              },10000);
              var resolvePromise = new PromiseResolve(resolve,timeoutId);
              resolvePromise.protoMessageId = protoMessageId;

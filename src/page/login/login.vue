@@ -115,6 +115,9 @@ export default {
           var _this = this;
           this.sendVerifyBtnDisabled = true;
           var countDown = 60;
+          var code = response.data.message;
+          this.code = code;
+
           this.countDownTimer = setInterval(() => {
             _this.sendVerifyBtnText = --countDown + "S";
             // console.log("countdown "+countDown);
