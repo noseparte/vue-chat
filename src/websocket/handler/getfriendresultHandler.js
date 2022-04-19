@@ -8,6 +8,7 @@ export default class GetFriendResultHandler extends AbstractMessageHandler{
     }
 
     processMessage(proto){
+        console.log("GetFriendResultHandler === ", proto.content)
         var friendList  = JSON.parse(proto.content);
         var userIds = [];
         for(var i in friendList){

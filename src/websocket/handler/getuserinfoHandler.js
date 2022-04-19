@@ -11,6 +11,7 @@ export default class GetUserInfoHandler extends AbstractMessageHandler{
     }
 
     processMessage(proto){
+      console.log("GetUserInfoHandler === ", proto.content)
        if(proto.content != null && proto.content != ''){
            var userInfoList = JSON.parse(proto.content);
            var stateFriendList = [];
@@ -20,8 +21,9 @@ export default class GetUserInfoHandler extends AbstractMessageHandler{
                var pinyinInitial = py(displayName,{
                    style: py.STYLE_FIRST_LETTER
                });
+               console.log("pinyinInitial ---------- ", pinyinInitial);
                var initial = pinyinInitial[0][0];
-               
+
                if(initial.length > 1){
                    var initial = initial.substr(0,1);
                    var reg= /^[A-Za-z]/;
@@ -54,7 +56,7 @@ export default class GetUserInfoHandler extends AbstractMessageHandler{
               promiseReslove.resolve(new FutureResult(SUCCESS_CODE,displayName));
               this.vueWebsocket.resolvePromiseMap.delete(proto.messageId);
            }
-        
+
            this.vueWebsocket.sendAction("updateUserInfos",userInfos);
            this.vueWebsocket.sendAction("updateFriendList",stateFriendList);
        }
