@@ -236,6 +236,13 @@ export default class VueWebSocket {
         this.sendPublishMessage(FP,{version : version});
     }
 
+    /**
+     * 获取群组列表
+     */
+    getGroups(version = 0){
+        this.sendPublishMessage(GPGI,{version : version});
+    }
+
     searchUser(keyword){
         var content = {
             keyword: keyword,

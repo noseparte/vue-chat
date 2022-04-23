@@ -16,6 +16,7 @@ export default class ConnectAckHandler extends AbstractMessageHandler{
         console.log("connectAcceptedMessage friendHead "+connectAcceptedMessage.friendHead+" messageHead "+connectAcceptedMessage.messageHead);
         //拉取朋友列表
         this.vueWebsocket.getFriend();
+        this.vueWebsocket.getGroups();
         let lastMessageSeq = LocalStore.getLastMessageSeq();
         if(!lastMessageSeq){
             lastMessageSeq = '0';
