@@ -13,7 +13,9 @@ export default class GetGroupInfoHandler extends AbstractMessageHandler{
            var groupInfoList = JSON.parse(proto.content);
            var groups = [];
            for(var groupInfo of groupInfoList){
-               groups.push(GroupInfo.convert2GroupInfo(groupInfo));
+               var group2 = GroupInfo.convert2GroupInfo(groupInfo);
+               groups.push(group2);
+               this.vueWebsocket.sendAction("getGroupMember", group2.target)
            }
            this.vueWebsocket.sendAction("updateGroupInfos",groups);
         }
