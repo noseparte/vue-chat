@@ -29,6 +29,7 @@ export const MP = 'MP';
 export const MS = "MS";
 export const MN = "MN";
 export const MR = "MR";
+export const MRR = "MRR";
 export const RMN = "RMN";
 export const GQNUT = "GQNUT";
 export const GMURL = "GMURL";
@@ -45,7 +46,7 @@ export const LOGIN_API = HTTP_HOST + "login";
 export const SNED_VERIFY_CODE_API = HTTP_HOST + "send_code";;
 
 export const KEY_VUE_DEVICE_ID = 'vue-device-id';
-export const KEY_VUE_USER_ID = 'vue-user-id'; 
+export const KEY_VUE_USER_ID = 'vue-user-id';
 export const KEY_VUE_TOKEN = 'vue-token';
 
 //userId 这里为了演示静态登录，由于还没有登录界面所以暂时使用静态userid
